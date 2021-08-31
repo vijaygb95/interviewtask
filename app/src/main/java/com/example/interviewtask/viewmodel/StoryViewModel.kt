@@ -49,7 +49,8 @@ fun getStoreDetails(type: Int?,id:String) = liveData(Dispatchers.IO) {
         try {
             when (type) {
                 Constants.StoryDetails -> {
-                    emit(Resource.success(data = apiInterface.getItem(id)))
+
+                    emit(Resource.success(data = apiInterface.getItem("item/$id.json")))
                 }
 
             }

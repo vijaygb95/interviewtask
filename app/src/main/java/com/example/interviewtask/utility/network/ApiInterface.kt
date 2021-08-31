@@ -4,13 +4,14 @@ import com.example.interviewtask.model.StoreDetailsModel
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import retrofit2.http.Url
 
 interface ApiInterface {
 
-    @GET("item/{ITEM_ID}.json")
-    suspend fun getItem(@Path("ID")  ITEM_ID:String): StoreDetailsModel
+    @GET
+    suspend fun getItem(@Url url: String): StoreDetailsModel
 
-      @GET("newstories.json")
+    @GET("newstories.json")
     suspend fun getNewstories(): List<String>
 
     @GET("topstories.json")

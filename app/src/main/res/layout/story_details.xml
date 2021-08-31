@@ -17,6 +17,7 @@
         android:padding="10dp">
 
         <LinearLayout
+            android:id="@+id/llTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -25,20 +26,23 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0.5"
+                android:layout_gravity="center_vertical"
                 android:text="@string/title"
+                android:textStyle="bold"
                 android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/tvTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="1.5"
                 android:textColor="@color/black" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/llUrl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -47,15 +51,17 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:layout_weight=".5"
                 android:text="@string/url"
+                android:textStyle="bold"
                 android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/tvUrl"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="1.5"
                 android:textColor="@color/black" />
 
         </LinearLayout>

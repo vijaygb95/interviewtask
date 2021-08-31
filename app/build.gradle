@@ -14,6 +14,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -103,13 +104,13 @@ dependencies {
 
 }
 
-if (project.hasProperty('kapt')) {
-    // Reference for 'kapt' DSL: https://kotlinlang.org/docs/reference/kapt.html#java-compiler-options
-    kapt {
-        // we expect this closure to run over a org.jetbrains.kotlin.gradle.plugin.KaptExtension
-        javacOptions {
-            option("-source", "8")
-            option("-target", "8")
-        }
-    }
-}
+//if (project.hasProperty('kapt')) {
+//    // Reference for 'kapt' DSL: https://kotlinlang.org/docs/reference/kapt.html#java-compiler-options
+//    kapt {
+//        // we expect this closure to run over a org.jetbrains.kotlin.gradle.plugin.KaptExtension
+//        javacOptions {
+//            option("-source", "8")
+//            option("-target", "8")
+//        }
+//    }
+//}

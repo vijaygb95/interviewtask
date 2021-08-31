@@ -2,13 +2,17 @@ package com.example.interviewtask.view
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.view.Menu
 import android.view.View
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.databinding.BindingAdapter
@@ -18,6 +22,7 @@ import androidx.recyclerview.widget.SimpleItemAnimator
 import com.app.washeruser.repository.Status
 import com.example.interviewtask.R
 import com.example.interviewtask.databinding.ActivityMainBinding
+import com.example.interviewtask.model.StoreDetailsModel
 import com.example.interviewtask.repository.StoryRepository
 import com.example.interviewtask.utility.Constants
 import com.example.interviewtask.utility.network.Resource
@@ -27,10 +32,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 import kotlin.collections.ArrayList
-
-import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
-import com.example.interviewtask.model.StoreDetailsModel
 
 
 class MainActivity : AppCompatActivity() {
@@ -53,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         binding.adapter = adapter
 
         initListeners()
-        setupObservers(Constants.NewStories)
+//        setupObservers(Constants.NewStories)
         checkAndUpdateData(Constants.NewStories)
     }
 
@@ -88,15 +89,23 @@ class MainActivity : AppCompatActivity() {
         val dialogView: View = inflater.inflate(R.layout.story_details, null)
         dialogBuilder.setView(dialogView)
 
+        val llTitle = dialogView.findViewById<View>(R.id.llTitle) as LinearLayout
+        val llUrl = dialogView.findViewById<View>(R.id.llUrl) as LinearLayout
         val tvTitle = dialogView.findViewById<View>(R.id.tvTitle) as TextView
         val tvUrl = dialogView.findViewById<View>(R.id.tvUrl) as TextView
 
         resource.data?.let { storeDetails ->
             if (!TextUtils.isEmpty(storeDetails.title)) {
+                llTitle.visibility = View.VISIBLE
                 tvTitle.setText(storeDetails.title)
+            } else {
+                llTitle.visibility = View.GONE
             }
             if (!TextUtils.isEmpty(storeDetails.url)) {
                 tvUrl.setText(storeDetails.url)
+                llUrl.visibility = View.VISIBLE
+            } else {
+                llUrl.visibility = View.GONE
             }
         }
         val alertDialog: AlertDialog = dialogBuilder.create()
@@ -140,24 +149,24 @@ class MainActivity : AppCompatActivity() {
                 }
             })
         }
-        if (!isEntered) {
+        if (!isEntered && isNetworkConnected()) {
             setupObservers(type)
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.filter_menu, menu)
-        return true
+    private fun isNetworkConnected(): Boolean {
+        val cm = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        return cm.activeNetworkInfo != null && cm.activeNetworkInfo!!.isConnected
     }
 
-    private fun setupObservers(type: Int) {
 
-        storyViewModel.getData(type).observe(this, androidx.lifecycle.Observer {
-            it?.let { resource ->
-                loadData(resource, type, "")
-            }
-        })
+    private fun setupObservers(type: Int) {
+        if (isNetworkConnected())
+            storyViewModel.getData(type).observe(this, androidx.lifecycle.Observer {
+                it?.let { resource ->
+                    loadData(resource, type, "")
+                }
+            })
 
     }
 
