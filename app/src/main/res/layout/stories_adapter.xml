@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:vikram="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <import type="android.text.TextUtils"/>
+        <variable
+            name="data"
+            type="String" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvParent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:elevation="3dp"
+        vikram:cardBackgroundColor="@color/purple_200"
+        vikram:cardCornerRadius="5dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name"
+                android:paddingBottom="5dp"
+                android:text="@{data}"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                vikram:layout_constraintEnd_toEndOf="parent"
+                vikram:layout_constraintStart_toStartOf="parent"
+                vikram:layout_constraintTop_toTopOf="parent" />
+
+<!--            <TextView-->
+<!--                android:id="@+id/tvUrl"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:hint="Description"-->
+<!--                android:text="@{data}"-->
+<!--                android:textColor="@color/purple_700"-->
+<!--                android:textSize="14dp"-->
+<!--                android:visibility="@{TextUtils.isEmpty(data.description) ? View.GONE : View.VISIBLE}"-->
+<!--                vikram:layout_constraintEnd_toEndOf="parent"-->
+<!--                vikram:layout_constraintHorizontal_bias="0.0"-->
+<!--                vikram:layout_constraintStart_toStartOf="parent"-->
+<!--                vikram:layout_constraintTop_toBottomOf="@+id/textView" />-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

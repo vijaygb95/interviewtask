@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Just Rent itZo</string>
+    <string name="repo_name">Story list</string>
+        <string name="filter_new_stories">New Stories</string>
+    <string name="filter_top_stories">Top Stories</string>
+    <string name="filter_best_stories">Best Stories</string>
+    <string name="filter_ask_stories">Ask Stories</string>
+    <string name="filter_show_stories">Show Stories</string>
+    <string name="filter_job_stories">Job Stories</string>
+    <string name="no_data_found">No Data Found</string>
+    <string name="title">Title</string>
+    <string name="url">Url</string>
+
+</resources>

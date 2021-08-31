@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="example.javatpoint.com.optionmenu.MainActivity">
+
+    <item
+        android:id="@+id/new_stories"
+        android:icon="@android:drawable/btn_plus"
+        android:title="@string/filter_new_stories"
+        app:showAsAction="withText" />
+    <item
+        android:id="@+id/top_stories"
+        android:icon="@android:drawable/btn_plus"
+        android:title="@string/filter_top_stories"
+        app:showAsAction="withText" />
+    <item
+        android:id="@+id/best_stories"
+        android:icon="@android:drawable/btn_plus"
+        android:title="@string/filter_best_stories"
+        app:showAsAction="withText" />
+    <item
+        android:id="@+id/ask_stories"
+        android:icon="@android:drawable/btn_plus"
+        android:title="@string/filter_ask_stories"
+        app:showAsAction="withText" />
+    <item
+        android:id="@+id/show_stories"
+        android:icon="@android:drawable/btn_plus"
+        android:title="@string/filter_show_stories"
+        app:showAsAction="withText" />
+    <item
+        android:id="@+id/job_stories"
+        android:icon="@android:drawable/btn_plus"
+        android:title="@string/filter_job_stories"
+        app:showAsAction="withText" />
+
+</menu>

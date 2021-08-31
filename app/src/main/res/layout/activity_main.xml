@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="adapter"
+            type="com.example.interviewtask.view.adapter.StoriesAdapter" />
+
+        <variable
+            name="viewModel"
+            type="com.example.interviewtask.viewmodel.StoryViewModel" />
+
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/pullToRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".view.activity.MainActivity">
+
+            <TextView
+                android:id="@+id/selectedStory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:gravity="center"
+                android:text="New Stories"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/search_edt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_square_bg"
+                android:drawableStart="@drawable/ic_search"
+                android:drawableLeft="@drawable/ic_search"
+                android:drawablePadding="5dp"
+                android:hint="Search here"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
+                android:singleLine="true"
+                android:text="@={viewModel.textSearch}"
+                app:layout_constraintEnd_toStartOf="@+id/imageView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/selectedStory"
+                tools:ignore="MissingConstraints"
+                android:layout_marginLeft="5dp" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:onClick="openOptionsMenus"
+                android:padding="5dp"
+                android:src="@drawable/filter"
+                app:layout_constraintBottom_toBottomOf="@+id/search_edt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/search_edt" />
+
+
+            <TextView
+                android:id="@+id/noDataFound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/no_data_found"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                app:layout_constraintBottom_toBottomOf="@+id/recycle_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/search_edt" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycle_view"
+                bind_adapters="@{adapter}"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_below="@+id/search_edt"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/search_edt"
+                tools:listitem="@layout/stories_adapter" />
+
+            <ProgressBar
+                android:id="@+id/loadingProgress"
+                style="?android:attr/progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/search_edt" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>
