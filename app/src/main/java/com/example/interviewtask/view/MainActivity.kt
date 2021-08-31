@@ -54,7 +54,6 @@ class MainActivity : AppCompatActivity() {
         binding.adapter = adapter
 
         initListeners()
-//        setupObservers(Constants.NewStories)
         checkAndUpdateData(Constants.NewStories)
     }
 
@@ -115,7 +114,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun initListeners() {
         binding.pullToRefresh.setOnRefreshListener {
-            setupObservers(Constants.NewStories)
+            if (isNetworkConnected()) {
+                setupObservers(Constants.NewStories)
+            } else {
+                binding.pullToRefresh.isRefreshing = false
+                Toast.makeText(
+                    applicationContext,
+                    getString(R.string.internet_connection),
+                    Toast.LENGTH_LONG
+                ).show()
+
+            }
         }
         binding.searchEdt.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -243,6 +252,7 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("RestrictedApi")
     fun openOptionsMenus(view: View) {
+        //                    var oldTitle=binding.selectedStory.text.toString()
         val popup = PopupMenu(this@MainActivity, view)
         popup.getMenuInflater().inflate(R.menu.filter_menu, popup.getMenu())
         popup.setOnMenuItemClickListener { item ->
