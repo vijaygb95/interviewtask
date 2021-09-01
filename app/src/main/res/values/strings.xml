@@ -10,5 +10,6 @@
     <string name="no_data_founds">No Data Found</string>
     <string name="title">Title</string>
     <string name="url">Url</string>
+    <string name="internet_connection">Please check your internet connection</string>
 
 </resources>
